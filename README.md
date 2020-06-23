@@ -6,14 +6,31 @@ one for the general information of the plugin and one for the settings.
 
 ## How To Run??
 
-To run this project you must have 
+### Installing
+
+steps to run this project
+
 
 ```
-1st Step: Extract file
-2nd Step: Copy the plugin folder
-3rd Step: Paste in wp-content\plugins in your wordpress instalation folder
-4rd step: Activite the plugin from the dashboard of wordpress
+create folder named Ghalia
 ```
+
+And
+```
+copy and paste all files in The Ghalia folder created before
+```
+after that 
+```
+ copy Ghalia folder and past it in your wordpress instalation under this following path
+       wp-content\plugins
+```
+finally
+```
+activate the Ghalia plugin from dashboard
+```
+
+
+
 
 
 
