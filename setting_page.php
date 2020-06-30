@@ -1,48 +1,26 @@
-
-<?php
-if(isset($_POST['wphw_submit'])){
-    wphw_opt();
-    insert();
-}
-
-function wphw_opt(){
-    
-    $link = mysqli_connect("localhost", "root", "", "woo");
-    $sql = "CREATE TABLE GPlugin(id int NOT NULL PRIMARY KEY AUTO_INCREMENT, username varchar(255) NOT NULL, descriptions varchar(255) NOT NULL, Options varchar(255) NOT NULL)";
-    $result = mysqli_query($link, $sql);
-    return $result;
-
-}
-
-function insert(){
-
-    $link = mysqli_connect("localhost", "root", "", "woo");
-    $username= $_POST['username'];  
-    $descriptions = $_POST['descriptions'];
-    $Options= $_POST['Options'];
-
-    if(empty($_POST['username']) || empty($_POST['descriptions']) || empty($_POST['Options'] ))
-    {
-         
-    }
-    else
-    {
-         $query="insert INTO GPlugin (username,descriptions,Options)". "VALUES ('$username', '$descriptions', '$Options')";
-         $result=mysqli_query($link,$query);
-    }
-}
-
-?>
-
 <div class="wrap">
   <div id="icon-options-general" class="icon32"> <br>
   </div>
   <h2>Plugin Settings</h2>
-  <?php if(isset($_POST['wphw_submit'])):?>
-  <div id="message" class="updated below-h2">
-    <p>Content added successfully</p>
-  </div>
-  <?php endif;?>
+  <?php if(isset($_POST['wphw_submit'])){
+     require_once(dirname(dirname( dirname( dirname( __FILE__ )))) . '/wordpress-CreationPlugin/wp-load.php' );
+     global $wpdb;
+     if(isset($_POST['wphw_submit'])){
+       $username= $_POST['username'];  
+       $descriptions = $_POST['descriptions'];
+       $Options= $_POST['Options'];
+       $table_name = $wpdb->prefix . "plugin_table";
+   
+       $wpdb->insert( $table_name, array(
+                         'username' => $username,
+                         'descriptions' => $descriptions,
+                         'Options'=>$Options
+                         )); 
+                        echo'<div id="message" class="updated below-h2">
+                        <p>Content added successfully</p>
+                      </div>';
+                        }}
+                        ?>
   <div class="metabox-holder">
     <div class="postbox">
       <h3><strong>Enter all the informations and click on save button.</strong></h3>
@@ -50,17 +28,17 @@ function insert(){
       <table class="form-table">
           <tr>
             <th scope="row"></th>
-            <td><input type="text" name="username" value="" style="width:350px;" placeholder="Username" /></td>
+            <td><label> Username : </label><input type="text" name="username" value="" style="width:350px; margin-left:22px;" placeholder="Username" /></td>
           </tr>
 
           <tr>
             <th scope="row"></th>
-            <td><textarea name="descriptions" value="" style="width:350px;" placeholder="Description"></textarea></td>
+            <td><label> Description : </label><textarea name="descriptions" value="" style="width:350px;margin-left:16px;" placeholder="Description"></textarea></td>
           </tr>
 
           <tr>
             <th scope="row"></th>
-            <td><select name="Options" style="width:350px;">
+            <td><label>Option : </label><select name="Options" style="width:350px;margin-left:45px;">
                 <option value="">--Select--</option>
                 <option name="OptionA" value="OptionA">Option A</option>
                 <option name="OptionB" value="OptionB">Option B</option>
