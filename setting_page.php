@@ -3,7 +3,7 @@
   </div>
   <h2>Plugin Settings</h2>
   <?php if(isset($_POST['wphw_submit'])){
-     require_once(dirname(dirname( dirname( dirname( __FILE__ )))) . '/wordpress-CreationPlugin/wp-load.php' );
+     require_once(dirname(dirname( dirname( dirname( __FILE__ )))) . '/wp-load.php' );
      global $wpdb;
      if(isset($_POST['wphw_submit'])){
        $username= $_POST['username'];  
